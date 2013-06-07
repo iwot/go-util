@@ -4,6 +4,8 @@ go-util
 util for golang (for me)  
 StringBuffer only.
 
+Goではわざわざbytes.Bufferのラッパーは作るほどでもないですが、Githubへの登録、および`go get`から自分の作ったライブラリのインストールを試す意味でも作ってみました。
+
 INSTALL
 -------
 `go get github.com/iwot/go-util`
