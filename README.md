@@ -23,3 +23,11 @@ USAGE
 
       var str string = sb.String()
     }
+    
+    func t() {
+      sb := util.NewStringBuffer("AA", "BB")
+      sb.Append("A")
+      sb.Append("B")
+
+      var str string = sb.String()
+    }
