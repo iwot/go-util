@@ -12,22 +12,24 @@ INSTALL
 
 USAGE
 -----
-    import (
-      "github.com/iwot/go-util/util"
-    )
-    
-    func f() {
-      sb := util.NewStringBuffer()
-      sb.Append("A")
-      sb.Append("B")
+```go
+import (
+  "github.com/iwot/go-util/util"
+)
 
-      var str string = sb.String()
-    }
-    
-    func t() {
-      sb := util.NewStringBuffer("AA", "BB")
-      sb.Append("A")
-      sb.Append("B")
+func f() {
+  sb := util.NewStringBuffer()
+  sb.Append("A")
+  sb.Append("B")
 
-      var str string = sb.String()
-    }
+  var str string = sb.String() // "AB"
+}
+
+func t() {
+  sb := util.NewStringBuffer("AA", "BB")
+  sb.Append("A")
+  sb.Append("B")
+
+  var str string = sb.String() // "AABBAB"
+}
+```
