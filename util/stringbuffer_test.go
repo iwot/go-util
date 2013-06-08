@@ -16,6 +16,14 @@ func TestStringWithFirstValue(t *testing.T) {
 	assert.Equal(t, "sampleaaBB", sb.String(), "they should be equal")
 }
 
+func TestStringWithMultiByte(t *testing.T) {
+	sb := NewStringBuffer("こんに", "ちは")
+	assert.Equal(t, "こんにちは", sb.String(), "they should be equal")
+
+	sb.Append(",世界")
+	assert.Equal(t, "こんにちは,世界", sb.String(), "they should be equal")
+}
+
 func TestStringNoneFirstValue(t *testing.T) {
 	sb := NewStringBuffer()
 
