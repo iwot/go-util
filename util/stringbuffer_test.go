@@ -5,8 +5,20 @@ import (
 	"testing"
 )
 
-func TestStringAppend(t *testing.T) {
+func TestStringWithFirstValue(t *testing.T) {
+	sb := NewStringBuffer("sam", "ple")
+	assert.Equal(t, "sample", sb.String(), "they should be equal")
+
+	sb.Append("aa")
+	assert.Equal(t, "sampleaa", sb.String(), "they should be equal")
+
+	sb.Append("BB")
+	assert.Equal(t, "sampleaaBB", sb.String(), "they should be equal")
+}
+
+func TestStringNoneFirstValue(t *testing.T) {
 	sb := NewStringBuffer()
+
 	assert.Equal(t, "", sb.String(), "they should be equal")
 
 	sb.Append("aa")

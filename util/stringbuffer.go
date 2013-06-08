@@ -8,8 +8,12 @@ type StringBuffer struct {
 	buffer bytes.Buffer
 }
 
-func NewStringBuffer() *StringBuffer {
-	return &StringBuffer{}
+func NewStringBuffer(strs ...string) *StringBuffer {
+	sb := &StringBuffer{}
+	for _, str := range strs {
+		sb.Append(str)
+	}
+	return sb
 }
 
 func (s *StringBuffer) Append(str string) {
