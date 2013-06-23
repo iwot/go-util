@@ -2,9 +2,9 @@ go-util
 =======
 
 util for golang.  
-StringBuffer only.
 
-Goではわざわざbytes.Bufferのラッパーは作るほどでもないですが、Githubへの登録、および`go get`から自分の作ったライブラリのインストールを試す意味でも作ってみました。
+- StringBuffer.
+- Stack.
 
 INSTALL
 -------
