@@ -33,3 +33,5 @@ func t() {
   var str string = sb.String() // "AABBAB"
 }
 ```
+
+[MIT License](https://github.com/iwot/go-util/blob/master/LICENSE "MIT License")
