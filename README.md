@@ -13,7 +13,8 @@ INSTALL
 
 USAGE
 -----
-PathMatch
+### PathMatch
+URLのパスのパターンに対して、与えられたパスがマッチするかを判定し、マッチする場合はそのマッチ結果を返す。
 ```go
 m := NewPathMatch()
 pattern := `/member/<id:[0-9]{8}>/<page>`
@@ -30,7 +31,7 @@ assert.Equal(t, "01234567", matches["id"])
 assert.Equal(t, "news", matches["page"])
 ```
 
-StringBuffer
+### StringBuffer
 ```go
 import (
   "github.com/iwot/go-util/util"
@@ -53,7 +54,7 @@ func t() {
 }
 ```
 
-Stack
+### Stack
 ```go
 stack := new(Stack)
 stack.Push("aaa")
