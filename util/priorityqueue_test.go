@@ -152,3 +152,44 @@ func TestDijkstra(t *testing.T) {
 
 	assert.Equal(t, 10, nodes[last].cost)
 }
+
+func BenchmarkDijkstra(b *testing.B) {
+	nodes := make([]*Node, 6)
+	nodes[0] = NewNode([]int{1, 2, 3}, []int{2, 4, 5})
+	nodes[1] = NewNode([]int{0, 2, 4}, []int{2, 3, 6})
+	nodes[2] = NewNode([]int{0, 1, 3, 4}, []int{4, 3, 2, 2})
+	nodes[3] = NewNode([]int{0, 2, 5}, []int{5, 2, 6})
+	nodes[4] = NewNode([]int{1, 2, 5}, []int{6, 2, 4})
+	nodes[5] = NewNode([]int{}, []int{})
+
+	for _, node := range nodes {
+		node.cost = -1
+		node.done = false
+	}
+
+	start := 0
+	//last := 5
+
+	nodes[start].cost = 0
+
+	q := NewPriorityQueue()
+	q.Push(nodes[start])
+
+	for !q.Empty() {
+		doneNode := q.Pop().(*Node)
+
+		doneNode.done = true
+		for i := 0; i < len(doneNode.edgesTo); i++ {
+			to := doneNode.edgesTo[i]
+			cost := doneNode.Cost() + doneNode.edgesCost[i]
+			if nodes[to].Cost() < 0 || cost < nodes[to].Cost() {
+				nodes[to].SetCost(cost)
+				if !q.Contain(nodes[to]) {
+					q.Push(nodes[to])
+				}
+			}
+		}
+	}
+
+	//assert.Equal(t, 10, nodes[last].cost)
+}

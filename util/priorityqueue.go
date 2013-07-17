@@ -20,28 +20,37 @@ type PriorityQueue struct {
 }
 
 func (q *PriorityQueue) Push(newElm PriorityQueueElement) {
-	ns := make([]PriorityQueueElement, len(q.elms)+1)
-	for index, elm := range q.elms {
-		if newElm.Lt(elm) {
-			continue
+	q.elms = push(q.elms, newElm)
+}
+
+func push(ps []PriorityQueueElement, elm PriorityQueueElement) []PriorityQueueElement {
+	if len(ps) > 1 {
+		idx := len(ps) / 2
+		if ps[idx-1].Lt(elm) {
+			result := ps[0:idx]
+			result = append(result, push(ps[idx:], elm)...)
+			return result
+		} else if ps[idx].Gt(elm) {
+			result := push(ps[0:idx], elm)
+			result = append(result, ps[idx:]...)
+			return result
 		} else {
-			if index > 0 {
-				copy(ns, q.elms[0:index])
-			}
-			ns[index] = newElm
-			i := index
-			for _, v := range q.elms[index:] {
-				i++
-				ns[i] = v
-			}
-			break
+			result := append(ps[0:idx], elm)
+			result = append(result, ps[idx:]...)
+			return result
 		}
-	}
-	if len(q.elms) == 0 {
-		ns[0] = newElm
-		q.elms = ns
+	} else if len(ps) == 1 {
+		ns := make([]PriorityQueueElement, 2)
+		if ps[0].Lt(elm) {
+			ns[0], ns[1] = elm, ps[0]
+		} else {
+			ns[0], ns[1] = ps[0], elm
+		}
+		return ns
 	} else {
-		q.elms = ns
+		ns := make([]PriorityQueueElement, 1)
+		ns[0] = elm
+		return ns
 	}
 }
 
