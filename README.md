@@ -3,6 +3,7 @@ go-util
 
 util for golang.  
 
+- PriorityQueue (Dijkstra Sample : priorityqueue_test.go)
 - PathMatch
 - StringBuffer.
 - Stack.
@@ -13,6 +14,27 @@ INSTALL
 
 USAGE
 -----
+### PriorityQueue
+プライオリティ付きのキュー。
+ダイクストラのサンプルをテストにつけてます。
+```go
+q := NewPriorityQueue()
+assert.Equal(t, 0, q.Size())
+
+q.Push(&N1{1})
+v2 := &N1{4}
+q.Push(v2)
+v3 := &N1{3}
+q.Push(v3)
+assert.Equal(t, 3, q.Size())
+p := q.Pop().(*N1)
+assert.Equal(t, 2, q.Size())
+assert.Equal(t, 4, p.value)
+
+assert.True(t, q.Contain(v3))
+assert.False(t, q.Contain(v2))
+```
+
 ### PathMatch
 URLのパスのパターンに対して、与えられたパスがマッチするかを判定し、マッチする場合はそのマッチ結果を返す。
 ```go
