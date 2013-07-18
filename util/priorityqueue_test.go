@@ -1,6 +1,7 @@
-package util
+package util_test
 
 import (
+	"../util"
 	"fmt"
 	"github.com/stretchrcom/testify/assert"
 	"testing"
@@ -35,7 +36,7 @@ func (n *N1) Eq(s interface{}) bool {
 }
 
 func TestPriorityQueue(t *testing.T) {
-	q := NewPriorityQueue()
+	q := util.NewPriorityQueue()
 	assert.Equal(t, 0, q.Size())
 
 	q.Push(&N1{1})
@@ -112,7 +113,7 @@ func (n *Node) Eq(s interface{}) bool {
 	return false
 }
 
-func TestDijkstra(t *testing.T) {
+func ExampleDijkstra(t *testing.T) {
 	nodes := make([]*Node, 6)
 	nodes[0] = NewNode([]int{1, 2, 3}, []int{2, 4, 5})
 	nodes[1] = NewNode([]int{0, 2, 4}, []int{2, 3, 6})
@@ -131,7 +132,7 @@ func TestDijkstra(t *testing.T) {
 
 	nodes[start].cost = 0
 
-	q := NewPriorityQueue()
+	q := util.NewPriorityQueue()
 	q.Push(nodes[start])
 
 	for !q.Empty() {
@@ -172,7 +173,7 @@ func BenchmarkDijkstra(b *testing.B) {
 
 	nodes[start].cost = 0
 
-	q := NewPriorityQueue()
+	q := util.NewPriorityQueue()
 	q.Push(nodes[start])
 
 	for !q.Empty() {
