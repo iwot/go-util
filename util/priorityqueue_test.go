@@ -113,7 +113,7 @@ func (n *Node) Eq(s interface{}) bool {
 	return false
 }
 
-func ExampleDijkstra() {
+func ExamplePriorityQueue_Dijkstra() {
 	nodes := make([]*Node, 6)
 	nodes[0] = NewNode([]int{1, 2, 3}, []int{2, 4, 5})
 	nodes[1] = NewNode([]int{0, 2, 4}, []int{2, 3, 6})
@@ -152,8 +152,7 @@ func ExampleDijkstra() {
 	}
 
 	fmt.Println("cost is ", nodes[last].cost)
-	// Output:
-	// cost is 10
+	// Output: cost is 10
 }
 
 func BenchmarkDijkstra(b *testing.B) {
